@@ -40,13 +40,15 @@
 `work-end` が残した記録を、次の `work-start` が読む、という繰り返しです。
 
 ```mermaid
-flowchart LR
-    A["作業開始<br>work-start"] --> B["今日やることの表を<br>確認する"]
-    B --> C["作業する"]
-    C --> D["作業終わり<br>work-end"]
-    D --> E[("作業ログ<br>STATUS.md")]
-    E -->|次の作業開始で読む| A
+flowchart TB
+    subgraph 毎回の流れ
+      A["1. 作業開始<br>work-start"] --> B["2. 今日やることの表を<br>確認する"]
+      B --> C["3. 作業する"]
+      C --> D["4. 作業終わり<br>work-end"]
+    end
     M["会議の文字起こし<br>meeting-todo"] --> B
+    D -->|書く| E[("作業ログ・STATUS.md")]
+    E -->|次の作業開始で読む| A
 ```
 
 - **work-start**：記録を読む → 表を出す → 確認してから始める
